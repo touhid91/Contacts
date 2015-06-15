@@ -10,16 +10,15 @@ namespace Contacts.Repository.Abstract
     public interface IRepository<TEntity>
         where TEntity : class, new()
     {
-        Task<TEntity> GetAsync();
-        Task<IQueryable<TEntity>> GetAsync(Guid id);
-        Task<IQueryable<TEntity>> GetAsync(params Guid[] keyValues);
-        Task<IQueryable<TEntity>> GetAsync(Expression<Func<TEntity, bool>> predicate);
-        Task<IQueryable<TEntity>> GetAsync(int pageIndex, int pageSize);
-        Task<IQueryable<TEntity>> GetAsync(Expression<Func<TEntity, bool>> predicate, int pageIndex, int pageSize);
-        Task<IQueryable<TEntity>> GetAsync(Expression<Func<TEntity, object>> sortingKeySelector, int pageIndex, int pageSize);
-        Task<IQueryable<TEntity>> GetAsync(Expression<Func<TEntity, object>> sortingKeySelector, SortOrder sortOrder, int pageIndex, int pageSize);
-        Task<IQueryable<TEntity>> GetAsync(Expression<Func<TEntity, object>> sortingKeySelector, Expression<Func<TEntity, bool>> predicate, int pageIndex, int pageSize);
-        Task<IQueryable<TEntity>> GetAsync(Expression<Func<TEntity, object>> sortingKeySelector, SortOrder sortOrder, Expression<Func<TEntity, bool>> predicate, int pageIndex, int pageSize);
+        Task<TEntity> Get(params Guid[] keyValues);
+        IQueryable<TEntity> Get();
+        IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate);
+        IQueryable<TEntity> Get(int pageIndex, int pageSize);
+        IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate, int pageIndex, int pageSize);
+        IQueryable<TEntity> Get(Expression<Func<TEntity, object>> sortingKeySelector, int pageIndex, int pageSize);
+        IQueryable<TEntity> Get(Expression<Func<TEntity, object>> sortingKeySelector, SortOrder sortOrder, int pageIndex, int pageSize);
+        IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, object>> sortingKeySelector, int pageIndex, int pageSize);
+        IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, object>> sortingKeySelector, SortOrder sortOrder, int pageIndex, int pageSize);
 
         Task<int> CountAsync();
         Task<int> CountAsync(Expression<Func<TEntity, bool>> predicate);
@@ -30,7 +29,6 @@ namespace Contacts.Repository.Abstract
         void Modify(TEntity entity);
         void Modify(IEnumerable<TEntity> entities);
 
-        Task Remove(Guid id);
         Task Remove(params Guid[] keyValues);
         Task Remove(IEnumerable<TEntity> entities);
 

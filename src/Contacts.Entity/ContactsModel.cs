@@ -10,6 +10,7 @@ namespace Contacts.Entity
         public ContactsModel()
             : base("name=ContactsModel")
         {
+            base.Configuration.LazyLoadingEnabled = true;
         }
 
         public virtual DbSet<Address> Addresses { get; set; }
@@ -21,12 +22,12 @@ namespace Contacts.Entity
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Address>()
-                .HasMany(e => e.People)
+                .HasMany(e => e.CurrentResident)
                 .WithOptional(e => e.PresentAddress)
                 .HasForeignKey(e => e.PermanentAddressId);
 
             modelBuilder.Entity<Address>()
-                .HasMany(e => e.People1)
+                .HasMany(e => e.PermanentResident)
                 .WithOptional(e => e.PermanentAddress)
                 .HasForeignKey(e => e.PresentAddressId);
 

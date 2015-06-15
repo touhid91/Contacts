@@ -10,8 +10,8 @@ namespace Contacts.Repository.Concrete
     public class Repository<TEntity>
         : IRepository<TEntity> where TEntity : class, new()
     {
-        private readonly DbSet<TEntity> _dbSet;
-        private readonly Contacts.Entity.ContactsModel _dbContext;
+        protected readonly DbSet<TEntity> _dbSet;
+        protected readonly Contacts.Entity.ContactsModel _dbContext;
 
         public Repository(Contacts.Entity.ContactsModel context)
         {
@@ -21,102 +21,92 @@ namespace Contacts.Repository.Concrete
             _dbSet = _dbContext.Set<TEntity>();
         }
 
-        Task<TEntity> IRepository<TEntity>.GetAsync()
+        public async Task<TEntity> Get(params Guid[] keyValues)
+        {
+            return await _dbSet.FindAsync(keyValues);
+        }
+
+        public IQueryable<TEntity> Get()
+        {
+            return _dbSet.AsQueryable<TEntity>();
+        }
+
+        public IQueryable<TEntity> Get(System.Linq.Expressions.Expression<Func<TEntity, bool>> predicate)
+        {
+            return _dbSet.Where<TEntity>(predicate);
+        }
+
+        public IQueryable<TEntity> Get(int pageIndex, int pageSize)
+        {
+            return _dbSet.Paged(pageIndex, pageSize);
+        }
+
+        public IQueryable<TEntity> Get(System.Linq.Expressions.Expression<Func<TEntity, bool>> predicate, int pageIndex, int pageSize)
+        {
+            return _dbSet.Where<TEntity>(predicate).Paged(pageIndex, pageSize);
+        }
+
+        public IQueryable<TEntity> Get(System.Linq.Expressions.Expression<Func<TEntity, object>> sortingKeySelector, int pageIndex, int pageSize)
+        {
+            return _dbSet.OrderBy<TEntity, object>(sortingKeySelector).Paged(pageIndex, pageSize);
+        }
+
+        public IQueryable<TEntity> Get(System.Linq.Expressions.Expression<Func<TEntity, object>> sortingKeySelector, System.Data.SqlClient.SortOrder sortOrder, int pageIndex, int pageSize)
+        {
+            return _dbSet.OrderBy<TEntity, object>(sortingKeySelector, sortOrder).Paged(pageIndex, pageSize);
+        }
+
+        public IQueryable<TEntity> Get(System.Linq.Expressions.Expression<Func<TEntity, bool>> predicate, System.Linq.Expressions.Expression<Func<TEntity, object>> sortingKeySelector, int pageIndex, int pageSize)
+        {
+            return _dbSet.Where<TEntity>(predicate).OrderBy<TEntity, object>(sortingKeySelector).Paged(pageIndex, pageSize);
+        }
+
+        public IQueryable<TEntity> Get(System.Linq.Expressions.Expression<Func<TEntity, bool>> predicate, System.Linq.Expressions.Expression<Func<TEntity, object>> sortingKeySelector, System.Data.SqlClient.SortOrder sortOrder, int pageIndex, int pageSize)
+        {
+            return _dbSet.Where<TEntity>(predicate).OrderBy<TEntity, object>(sortingKeySelector, sortOrder).Paged(pageIndex, pageSize);
+        }
+
+        public async Task<int> CountAsync()
+        {
+            return await _dbSet.CountAsync<TEntity>();
+        }
+
+        public Task<int> CountAsync(System.Linq.Expressions.Expression<Func<TEntity, bool>> predicate)
         {
             throw new NotImplementedException();
         }
 
-        Task<IQueryable<TEntity>> IRepository<TEntity>.GetAsync(Guid id)
+        public void Attach(TEntity entity)
         {
             throw new NotImplementedException();
         }
 
-        Task<IQueryable<TEntity>> IRepository<TEntity>.GetAsync(params Guid[] keyValues)
+        public void Attach(IEnumerable<TEntity> entities)
         {
             throw new NotImplementedException();
         }
 
-        Task<IQueryable<TEntity>> IRepository<TEntity>.GetAsync(System.Linq.Expressions.Expression<Func<TEntity, bool>> predicate)
+        public void Modify(TEntity entity)
         {
             throw new NotImplementedException();
         }
 
-        Task<IQueryable<TEntity>> IRepository<TEntity>.GetAsync(int pageIndex, int pageSize)
+        public void Modify(IEnumerable<TEntity> entities)
         {
             throw new NotImplementedException();
         }
 
-        Task<IQueryable<TEntity>> IRepository<TEntity>.GetAsync(System.Linq.Expressions.Expression<Func<TEntity, bool>> predicate, int pageIndex, int pageSize)
+        public Task Remove(params Guid[] keyValues)
         {
             throw new NotImplementedException();
         }
 
-        Task<IQueryable<TEntity>> IRepository<TEntity>.GetAsync(System.Linq.Expressions.Expression<Func<TEntity, object>> sortingKeySelector, int pageIndex, int pageSize)
+        public Task Remove(IEnumerable<TEntity> entities)
         {
             throw new NotImplementedException();
         }
 
-        Task<IQueryable<TEntity>> IRepository<TEntity>.GetAsync(System.Linq.Expressions.Expression<Func<TEntity, object>> sortingKeySelector, System.Data.SqlClient.SortOrder sortOrder, int pageIndex, int pageSize)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<IQueryable<TEntity>> IRepository<TEntity>.GetAsync(System.Linq.Expressions.Expression<Func<TEntity, object>> sortingKeySelector, System.Linq.Expressions.Expression<Func<TEntity, bool>> predicate, int pageIndex, int pageSize)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<IQueryable<TEntity>> IRepository<TEntity>.GetAsync(System.Linq.Expressions.Expression<Func<TEntity, object>> sortingKeySelector, System.Data.SqlClient.SortOrder sortOrder, System.Linq.Expressions.Expression<Func<TEntity, bool>> predicate, int pageIndex, int pageSize)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<int> IRepository<TEntity>.CountAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<int> IRepository<TEntity>.CountAsync(System.Linq.Expressions.Expression<Func<TEntity, bool>> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRepository<TEntity>.Attach(TEntity entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRepository<TEntity>.Attach(IEnumerable<TEntity> entities)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRepository<TEntity>.Modify(TEntity entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRepository<TEntity>.Modify(IEnumerable<TEntity> entities)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task IRepository<TEntity>.Remove(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task IRepository<TEntity>.Remove(params Guid[] keyValues)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task IRepository<TEntity>.Remove(IEnumerable<TEntity> entities)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task IRepository<TEntity>.CommitAsync()
+        public Task CommitAsync()
         {
             throw new NotImplementedException();
         }

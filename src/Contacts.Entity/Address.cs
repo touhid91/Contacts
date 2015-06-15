@@ -11,8 +11,8 @@ namespace Contacts.Entity
     {
         public Address()
         {
-            People = new HashSet<Person>();
-            People1 = new HashSet<Person>();
+            CurrentResident = new HashSet<Person>();
+            PermanentResident = new HashSet<Person>();
         }
 
         public Guid Id { get; set; }
@@ -32,8 +32,8 @@ namespace Contacts.Entity
         [StringLength(20)]
         public string Country { get; set; }
 
-        public virtual ICollection<Person> People { get; set; }
+        public virtual ICollection<Person> CurrentResident { get; set; }
 
-        public virtual ICollection<Person> People1 { get; set; }
+        public virtual ICollection<Person> PermanentResident { get; set; }
     }
 }

@@ -39,8 +39,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IPersonRepository.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Contacts.Container\Contacts.Container.csproj">
+      <Project>{54c8dd7e-6e7a-448d-8c48-914c750a1e77}</Project>
+      <Name>Contacts.Container</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Contacts.Entity\Contacts.Entity.csproj">
+      <Project>{fe96befe-8818-4605-89a6-dcc20faf78d9}</Project>
+      <Name>Contacts.Entity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

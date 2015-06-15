@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Contacts.Repository.Abstract;
 
 namespace Contacts.Repository.Concrete
 {
@@ -7,10 +8,9 @@ namespace Contacts.Repository.Concrete
         protected override void Load(ContainerBuilder builder)
         {
             base.Load(builder);
-            builder.RegisterGeneric(typeof(Repository<>))
-                .As(typeof(Contacts.Repository.Abstract.IRepository<>))
-                .WithParameter("context", new Contacts.Entity.ContactsModel())
-                .InstancePerRequest();
+            builder.RegisterType<Contacts.Entity.ContactsModel>().AsSelf();
+            builder.RegisterGeneric(typeof(Repository<>)).As(typeof(Contacts.Repository.Abstract.IRepository<>));
+            builder.RegisterType<PersonRepository>().As<IPersonRepository, IRepository<Contacts.Entity.Person>>();
         }
     }
 }
