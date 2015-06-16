@@ -13,24 +13,31 @@ namespace Contacts.Repository.Concrete
     public class PersonRepository
         : Repository<Person>, IPersonRepository
     {
+        private readonly Func<Person, PersonContainer> projectionFunc_Person_PersonContainer = p => new PersonContainer
+        {
+            Id = p.Id,
+            FirstName = p.FirstName,
+            LastName = p.LastName
+        };
+
         public PersonRepository(ContactsModel model)
             : base(model)
         {
 
         }
 
-        public async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<Container.PersonContainer>> GetAsync(System.Linq.Expressions.Expression<System.Func<Person, object>> sortingKeySelector, System.Data.SqlClient.SortOrder sortOrder, int pageIndex, int pageSize)
+        public async System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<Container.PersonContainer>> GetAsync(System.Linq.Expressions.Expression<System.Func<Person, object>> sortingKeySelector, System.Data.SqlClient.SortOrder sortOrder, int pageIndex, int pageSize)
         {
-            Func<Person, PersonContainer> projectionFunc = p => new PersonContainer
-            {
-                Id = p.Id,
-                FirstName = p.FirstName,
-                LastName = p.LastName
-            };
             return await base
                 .Get(sortingKeySelector, sortOrder, pageIndex, pageSize)
                 .ToListAsync<Person>()
-                .ContinueWith<ICollection<PersonContainer>>(t => t.Result.Select<Person, PersonContainer>(projectionFunc).ToList<PersonContainer>());
+                .ContinueWith<IEnumerable<PersonContainer>>(t => t.Result.Select<Person, PersonContainer>(projectionFunc_Person_PersonContainer).ToList<PersonContainer>());
+        }
+
+
+        public Task<PersonContainer> GetAsync(Guid id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

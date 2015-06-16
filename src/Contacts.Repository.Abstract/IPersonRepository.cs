@@ -11,6 +11,8 @@ namespace Contacts.Repository.Abstract
     public interface IPersonRepository
         : IRepository<Person>
     {
-        Task<ICollection<PersonContainer>> GetAsync(Expression<Func<Person, object>> sortingKeySelector, SortOrder sortOrder, int pageIndex, int pageSize);
+        Task<IEnumerable<PersonContainer>> GetAsync(Expression<Func<Person, object>> sortingKeySelector, SortOrder sortOrder, int pageIndex, int pageSize);
+
+        Task<PersonContainer> GetAsync(Guid id);
     }
 }
