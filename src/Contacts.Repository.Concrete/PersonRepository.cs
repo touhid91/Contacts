@@ -13,7 +13,7 @@ namespace Contacts.Repository.Concrete
     public class PersonRepository
         : Repository<Person>, IPersonRepository
     {
-        private readonly Func<Person, PersonContainer> projectionFunc_Person_PersonContainer = p => new PersonContainer
+        private readonly Expression<Func<Person, PersonContainer>> _projectionFunc_Person_PersonContainer = p => new PersonContainer
         {
             Id = p.Id,
             FirstName = p.FirstName,
@@ -30,10 +30,9 @@ namespace Contacts.Repository.Concrete
         {
             return await base
                 .Get(sortingKeySelector, sortOrder, pageIndex, pageSize)
-                .ToListAsync<Person>()
-                .ContinueWith<IEnumerable<PersonContainer>>(t => t.Result.Select<Person, PersonContainer>(projectionFunc_Person_PersonContainer).ToList<PersonContainer>());
+                .Select<Person, PersonContainer>(_projectionFunc_Person_PersonContainer)
+                .ToListAsync<PersonContainer>();
         }
-
 
         public Task<PersonContainer> GetAsync(Guid id)
         {
