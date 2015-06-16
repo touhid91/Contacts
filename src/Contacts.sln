@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contacts.Container", "Conta
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contacts.Repository.UnitTest", "Contacts.Repository.UnitTest\Contacts.Repository.UnitTest.csproj", "{D2131766-C236-4E3A-8B08-431669F0E9B1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contacts.Web", "Contacts.Web\Contacts.Web.csproj", "{9CB4379D-FECA-4FE6-95F2-B3C7BD0D0F54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contacts.Web.Tests", "Contacts.Web.Tests\Contacts.Web.Tests.csproj", "{59052A7D-DCA7-4F59-8DE1-1EE5900463D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +57,14 @@ Global
 		{D2131766-C236-4E3A-8B08-431669F0E9B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2131766-C236-4E3A-8B08-431669F0E9B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2131766-C236-4E3A-8B08-431669F0E9B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CB4379D-FECA-4FE6-95F2-B3C7BD0D0F54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CB4379D-FECA-4FE6-95F2-B3C7BD0D0F54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CB4379D-FECA-4FE6-95F2-B3C7BD0D0F54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CB4379D-FECA-4FE6-95F2-B3C7BD0D0F54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59052A7D-DCA7-4F59-8DE1-1EE5900463D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59052A7D-DCA7-4F59-8DE1-1EE5900463D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59052A7D-DCA7-4F59-8DE1-1EE5900463D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59052A7D-DCA7-4F59-8DE1-1EE5900463D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,5 +76,7 @@ Global
 		{272E4F6C-5BDE-494C-9EB9-FE46518DAFE6} = {6727824C-A11E-4DD4-BC5B-CDF3245474A0}
 		{54C8DD7E-6E7A-448D-8C48-914C750A1E77} = {6727824C-A11E-4DD4-BC5B-CDF3245474A0}
 		{D2131766-C236-4E3A-8B08-431669F0E9B1} = {6727824C-A11E-4DD4-BC5B-CDF3245474A0}
+		{9CB4379D-FECA-4FE6-95F2-B3C7BD0D0F54} = {70CA3F06-F1E6-4702-9821-0746A5E3AD60}
+		{59052A7D-DCA7-4F59-8DE1-1EE5900463D9} = {70CA3F06-F1E6-4702-9821-0746A5E3AD60}
 	EndGlobalSection
 EndGlobal
