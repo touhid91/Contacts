@@ -6,11 +6,11 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{59052A7D-DCA7-4F59-8DE1-1EE5900463D9}</ProjectGuid>
+    <ProjectGuid>{B20782F6-C510-4887-BDE0-C68060CAFDC3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Contacts.Web.Tests</RootNamespace>
-    <AssemblyName>Contacts.Web.Tests</AssemblyName>
+    <RootNamespace>Contacts.Web.UnitTest</RootNamespace>
+    <AssemblyName>Contacts.Web.UnitTest</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -101,7 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Contacts.Web\Contacts.Web.csproj">
-      <Project>{9CB4379D-FECA-4FE6-95F2-B3C7BD0D0F54}</Project>
+      <Project>{235A8A58-3ADA-4CF5-B328-23215555C7F6}</Project>
       <Name>Contacts.Web</Name>
     </ProjectReference>
   </ItemGroup>
